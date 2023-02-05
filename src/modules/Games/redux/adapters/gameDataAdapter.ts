@@ -1,6 +1,6 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-nocheck
-function parseData(data) {
+function gameDataAdapter(data) {
     const result = []
     const sportMap = new Map()
     for (const match of data) {
@@ -61,4 +61,4 @@ function parseData(data) {
     return result
 }
 
-export default parseData
+export default gameDataAdapter

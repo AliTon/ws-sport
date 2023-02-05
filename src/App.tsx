@@ -1,21 +1,20 @@
-import React from 'react'
+import React from 'react';
+import {useDispatch} from "react-redux";
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+
 import MainLayout from './components/MainLayout'
 import { MainPage } from './modules/Games'
-import SportSocket from './modules/Games/service/SportSocket'
-import parseMatches from './parser'
+import {initGameSocket} from "./modules/Games/redux/actions/gamesActions";
 
-const client = new SportSocket('FF32862C-84F7-1276-CC06-ashkdhsa')
-
-// Sport -> Region -> Tournament -> Game
-
-client.onGettingMatches = (data: any) => {
-    console.log(data, 'ekel e ')
-    const parsed = parseMatches(data)
-    console.log(parsed)
-}
 
 function App() {
+    const dispatch = useDispatch();
+
+    React.useEffect(() => {
+        dispatch(initGameSocket())
+    }, [dispatch]);
+
+
     return (
         <BrowserRouter>
             <Routes>

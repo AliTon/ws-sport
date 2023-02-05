@@ -99,7 +99,7 @@ class SportSocket {
         const { data } = JSON.parse(message.data as unknown as string)
 
         // We get message about pong or session(init)
-        if (data === 'pong' || data.session) return
+        if (data === 'pong' || data.session) return;
 
         // It's mean that we are getting initial state for matches
         if (data.sid) {

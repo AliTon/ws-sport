@@ -8,29 +8,26 @@ export interface ITurnament {
 }
 
 interface IProps {
-    name?: string
-    flag: string
+    name?: string,
+    data: any,
 }
-const Country: React.FC<IProps> = ({ name, flag }) => {
+const Country: React.FC<IProps> = ({ name, data }) => {
     const [openState, setOpenState] = React.useState(false)
-    const tournamentData: ITurnament[] = [
-        { name: 'AAAA', count: 1 },
-        { name: 'BBB', count: 2 },
-        { name: 'CCC', count: 3 },
-        { name: 'DDD', count: 4 },
-    ]
+    const entries = [...data.tournamentMap.entries()];
+    console.log(entries, ">>>>>>>>>>>>>>>>>> DATA")
+
 
     return (
         <>
             <CountryStyle onClick={() => setOpenState(!openState)}>
-                <div>{flag}</div>
+                <div>flag</div>
                 <div>{name}</div>
-                <div>4</div>
+                <div>{data.count}</div>
             </CountryStyle>
             {openState && (
                 <div>
-                    {tournamentData.map((item) => (
-                        <TournamentItem item={item} key={item.name} />
+                    {entries.map((item: ITurnament[]) => (
+                        <TournamentItem item={item[1]} key={item[1].name} />
                     ))}
                 </div>
             )}
