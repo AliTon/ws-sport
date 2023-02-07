@@ -4,15 +4,23 @@ import SportSocket from "../../service/SportSocket";
 import {eventChannel} from "@redux-saga/core";
 import {getInitialGamesSuccess} from "../slices/gamesSlice";
 import gameDataAdapter from "../adapters/gameDataAdapter";
+import {IMatch} from "../../interfaces";
 
 function initSocket() {
     return eventChannel( emitter => {
         // init the connection here
         const ws = new SportSocket('FF32862C-84F7-1276-CC06-ashkdhsa')
 
-        ws.onGettingMatches = (e: any) => {
+        ws.onGettingMatches = (games: IMatch[]) => {
+            const firstMatch: IMatch = games[0]
+            console.log(games, "ee")
             // dispatch an action with emitter here
-            return emitter(getInitialGamesSuccess(gameDataAdapter(e)))
+            return emitter(getInitialGamesSuccess({
+                games: gameDataAdapter(games) as unknown,
+                activeGameId: firstMatch.sport.id,
+                activeRegionId: firstMatch.region.id,
+                activeTournamentId: firstMatch.tournament.id
+            }))
         }
         // unsubscribe function
         return () => {

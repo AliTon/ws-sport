@@ -1,7 +1,7 @@
 import React from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
-import { TabMenuStyle } from '../styles/index.styled'
+import { GamesTabMenuStyle } from '../styles/index.styled'
 import {getActiveGameSelector, getGamesSelector} from '../redux/selectors/gamesSelector';
 
 import styled from 'styled-components'
@@ -39,20 +39,20 @@ export const TabItemStyle = styled.div<StyledTabProps>`
     }
 `
 
-const TabMenu: React.FC = () => {
+const GamesTabMenu: React.FC = () => {
     const dispatch  = useDispatch();
     const games = useSelector(getGamesSelector)
     const activeGame = useSelector(getActiveGameSelector)
 
 
     return (
-        <TabMenuStyle>
-            {games.map((game) => (
+        <GamesTabMenuStyle>
+            {Object.values(games).map((game) => (
                 <TabItemStyle
-                    active={activeGame === game.name}
-                    onClick={() => dispatch(changeActiveGame(game.name))}
+                    active={activeGame === game.id}
+                    onClick={() => dispatch(changeActiveGame(game.id))}
                 >
-                    <div className="tabDescription_count">{game.count}</div>
+                    <div className="tabDescription_count">{game.matchesCount}</div>
                     <div className="tabDescription_name_icon">
                         <div>
                             <i className={IconClassNameGenerator(game.name)}></i>
@@ -61,8 +61,8 @@ const TabMenu: React.FC = () => {
                     </div>
                 </TabItemStyle>
             ))}
-        </TabMenuStyle>
+        </GamesTabMenuStyle>
     )
 }
 
-export default TabMenu
+export default GamesTabMenu

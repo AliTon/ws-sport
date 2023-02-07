@@ -9,9 +9,10 @@ class SportSocket {
     onGettingMatches: any
     constructor(rid: string) {
         this.rid = rid
-        this.url = 'wss://mob.blue-version.com/hub/ws-sport'
-        // REAL - wss://sport.funexx.com/hub/ws-sport?s=ls
-        // Test  - wss://mob.blue-version.com/hub/ws-sport
+        // TEST
+        // this.url = 'wss://mob.blue-version.com/hub/ws-sport'
+        // REAL
+        // this.url = 'wss://sport.funexx.com/hub/ws-sport?s=ls'
         // this.initialStateCb = initialStateCb
         // this.updateStateCb = updateStateCb
         this.init()

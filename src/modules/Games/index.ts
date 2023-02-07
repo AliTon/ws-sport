@@ -1,5 +1,5 @@
 // PAGES
-export { default as MainPage } from './pages/Main'
+export { default as MainPage } from './pages/LiveGames'
 
 // STORE
 export {default as gamesSaga} from "./redux/sagas/gamesSaga"

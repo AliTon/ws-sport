@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const TabMenuStyle = styled.div`
+export const GamesTabMenuStyle = styled.div`
     background-color: #292c3d;
     width: 100%;
     height: 100px;
@@ -8,7 +8,7 @@ export const TabMenuStyle = styled.div`
     align-items: center;
     justify-content: flex-start;
 `
-export const DropdownMenuStyle = styled.div`
+export const RegionDropdownMenuStyle = styled.div`
     background-color: #292c3d;
     width: 300px;
     height: 100%;

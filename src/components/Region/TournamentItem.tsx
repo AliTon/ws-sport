@@ -1,22 +1,17 @@
 import React from 'react'
 import { TournamentItemStyle } from './index.styled'
-import { ITurnament } from '.'
 import {useDispatch} from "react-redux";
 import {changeActiveTournament} from "../../modules/Games/redux/slices/gamesSlice";
+import {ITournament} from "../../modules/Games/interfaces";
 
-interface IProps {
-    value: any
-}
-const TournamentItem: React.FC<IProps> = ({value}) => {
+const TournamentItem: React.FC<ITournament & {regionId: string}> = ({id, name, matchesCount, regionId}) => {
     const dispatch = useDispatch();
-
-    // console.log(value, "------- item")
 
     return (
         <TournamentItemStyle>
-            <div onClick={() => dispatch(changeActiveTournament(value.id))}>
-                <div>{value.name}</div>
-                <div>{value.count}</div>
+            <div onClick={() => dispatch(changeActiveTournament({id, regionId}))}>
+                <div>{name}</div>
+                <div>{matchesCount}</div>
             </div>
 
         </TournamentItemStyle>

@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-export const CountryStyle = styled.div`
+export const RegionStyle = styled.div`
     background-color: #363949;
     color: #c4c7d4;
     width: 100%;
