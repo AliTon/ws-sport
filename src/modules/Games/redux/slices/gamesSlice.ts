@@ -20,9 +20,18 @@ export const gamesSlice = createSlice({
     initialState,
     reducers: {
         getInitialGamesSuccess: (state, action) => {
+            // console.log(action.payload)
             state.data = action.payload
+            state.activeGame = action.payload[0].name
+            // state.activeTournament = action.payload[0].region[0].
             state.loading = false
         },
+        changeActiveGame(state, action) {
+            state.activeGame = action.payload
+        },
+        changeActiveTournament(state, action){
+            state.activeTournament =   action.payload
+        }
     },
     extraReducers: {
         // [getGamesAction.type as string]: (state: GamesState) => {
@@ -34,5 +43,5 @@ export const gamesSlice = createSlice({
     },
 })
 
-export const { getInitialGamesSuccess } = gamesSlice.actions;
+export const { getInitialGamesSuccess, changeActiveGame, changeActiveTournament } = gamesSlice.actions;
 export default gamesSlice;

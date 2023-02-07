@@ -9,8 +9,14 @@ export const CountryStyle = styled.div`
     transition-duration: 0.4s;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     cursor: pointer;
+  .region_tournament_count {
+    width: 50px;
+    margin: 0 8px;
+    padding: 0 8px;
+    background-color: #363949;
+  }
 `
 export const TournamentItemStyle = styled.div`
     background-color: #434656;

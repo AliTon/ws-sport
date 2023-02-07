@@ -10,6 +10,8 @@ class SportSocket {
     constructor(rid: string) {
         this.rid = rid
         this.url = 'wss://mob.blue-version.com/hub/ws-sport'
+        // REAL - wss://sport.funexx.com/hub/ws-sport?s=ls
+        // Test  - wss://mob.blue-version.com/hub/ws-sport
         // this.initialStateCb = initialStateCb
         // this.updateStateCb = updateStateCb
         this.init()
@@ -107,7 +109,7 @@ class SportSocket {
             return
         }
 
-        console.log(JSON.stringify(data))
+        // console.log(JSON.stringify(data))
 
         // this.updateStateCb(data)
     }

@@ -2,17 +2,21 @@ import React from 'react'
 import Country from '../../../components/Country'
 import { DropdownMenuStyle } from '../styles/index.styled'
 import {useSelector} from "react-redux";
-import {getRegionsByGameSelector} from "../redux/selectors/gamesSelector";
+import {getActiveGameSelector, getRegionsByGameSelector} from "../redux/selectors/gamesSelector";
 
 const DropdownMenu: React.FC = () => {
-    const {regions = []} = useSelector(getRegionsByGameSelector("Cricket"));
+    const activeGame = useSelector(getActiveGameSelector)
+    const {regions = []} = useSelector(getRegionsByGameSelector(activeGame));
 
     return (
         <DropdownMenuStyle>
             <div className={'title'}>Countries</div>
-            {regions.map((region: { name: string | undefined; }) =>
+            {regions.map((region: {
+                count: number;
+                tournamentMap: any;
+                name: string | undefined; }) =>
                 <div key={region.name}>
-                    <Country name={region.name} data={region}/>
+                    <Country name={region.name} count={region.count} tournaments={region.tournamentMap}/>
                 </div>)}
         </DropdownMenuStyle>
     )

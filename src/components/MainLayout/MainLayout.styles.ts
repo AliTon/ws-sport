@@ -6,6 +6,6 @@ export const StyledMainLayout = styled.div`
     flex-direction: column;
     justify-content: space-between;
     margin: 124px auto;
-    background: green;
-    height: 100%;
+    background: #292c3d;
+    //height: 100%;
 `

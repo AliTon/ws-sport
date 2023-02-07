@@ -1,9 +1,12 @@
 import styled from 'styled-components'
 
 export const TabMenuStyle = styled.div`
-    background-color: red;
+    background-color: #292c3d;
     width: 100%;
     height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
 `
 export const DropdownMenuStyle = styled.div`
     background-color: #292c3d;

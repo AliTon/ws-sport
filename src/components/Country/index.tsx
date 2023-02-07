@@ -9,25 +9,29 @@ export interface ITurnament {
 
 interface IProps {
     name?: string,
-    data: any,
+    tournaments: any,
+    count: number
 }
-const Country: React.FC<IProps> = ({ name, data }) => {
+const Country: React.FC<IProps> = ({ name, tournaments, count }) => {
     const [openState, setOpenState] = React.useState(false)
-    const entries = [...data.tournamentMap.entries()];
-    console.log(entries, ">>>>>>>>>>>>>>>>>> DATA")
+    // console.log(tournaments.values(), "tournaments")
 
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    //@ts-ignore
+    const values = [...tournaments.values()];
+
+    // console.log(values)
 
     return (
         <>
-            <CountryStyle onClick={() => setOpenState(!openState)}>
-                <div>flag</div>
-                <div>{name}</div>
-                <div>{data.count}</div>
+            <CountryStyle onClick={() => setOpenState((state) =>!state)}>
+                <div className='region_name'>{name}</div>
+                <div className='region_tournament_count'>{count}</div>
             </CountryStyle>
             {openState && (
                 <div>
-                    {entries.map((item: ITurnament[]) => (
-                        <TournamentItem item={item[1]} key={item[1].name} />
+                    {values.map((value: ITurnament) => (
+                        <TournamentItem value={value} key={value.name} />
                     ))}
                 </div>
             )}
