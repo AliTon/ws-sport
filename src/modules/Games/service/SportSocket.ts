@@ -10,7 +10,7 @@ class SportSocket {
     constructor(rid: string) {
         this.rid = rid
         // TEST
-        // this.url = 'wss://mob.blue-version.com/hub/ws-sport'
+        this.url = 'wss://mob.blue-version.com/hub/ws-sport'
         // REAL
         // this.url = 'wss://sport.funexx.com/hub/ws-sport?s=ls'
         // this.initialStateCb = initialStateCb

@@ -1,5 +1,5 @@
 import React from 'react'
-import {RegionStyle} from './index.styled'
+import {RegionStyle, ArrowStyle} from './index.styled'
 import TournamentItem from './TournamentItem'
 import {IRegion, ITournament} from "../../modules/Games/interfaces";
 
@@ -15,9 +15,13 @@ const Region: React.FC<IRegion> = ({ name, tournaments, matchesCount, id }) => {
 
     return (
         <>
-            <RegionStyle onClick={() => setOpenState((state) =>!state)}>
-                <div className='region_name'>{name}</div>
+            <RegionStyle state={openState} onClick={() => setOpenState((state) =>!state)}>
+                <div className='region_name ellipsis-text'>{name}</div>
                 <div className='region_tournament_count'>{matchesCount}</div>
+                <ArrowStyle state={openState}>
+                  <div/>
+                </ArrowStyle>
+
             </RegionStyle>
             {openState && (
                 <div>
