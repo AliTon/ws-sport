@@ -26,11 +26,15 @@ export default function gameDataAdapter(data: IMatch[]): Record<string, ISport> 
             result[sportId].regions[regionId].tournaments = {};
         }
         if (!result[sportId].regions[regionId].tournaments[tournamentId]) {
-            result[sportId].regions[regionId].tournaments[tournamentId] = { ...item.tournament, matches: [], matchesCount: 0 };
+            result[sportId].regions[regionId].tournaments[tournamentId] = { ...item.tournament, matches: {}, matchesCount: 0 };
         }
-        result[sportId].regions[regionId].tournaments[tournamentId].matches.push(item);
         result[sportId].regions[regionId].tournaments[tournamentId].matchesCount += 1;
+
+        const matchId = item._id;
+
+        if (!result[sportId].regions[regionId].tournaments[tournamentId].matches[matchId]) {
+            result[sportId].regions[regionId].tournaments[tournamentId].matches[matchId] = { ...item  };
+        }
     }
     return result;
 }
-

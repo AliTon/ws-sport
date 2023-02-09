@@ -1,10 +1,10 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import {ISport} from "../../interfaces";
+import {IMatch, ISport} from "../../interfaces";
 import gameDataAdapter from "../adapters/gameDataAdapter";
 // import { getGamesAction } from '../actions/gamesActions'
 
 export interface GamesState {
-    data: ISport[];
+    data: Record<string, ISport>;
     activeGameId: string;
     activeRegionId: string;
     activeTournamentId: string
@@ -12,7 +12,7 @@ export interface GamesState {
 }
 
 const initialState: GamesState = {
-    data: [],
+    data: {},
     activeGameId: "",
     activeRegionId: "",
     activeTournamentId: "",
@@ -29,14 +29,27 @@ export const gamesSlice = createSlice({
             activeRegionId: string,
             activeTournamentId: string
         }>) => {
+            console.log(games)
             state.data = games
             state.activeGameId = activeGameId
             state.activeRegionId = activeRegionId
             state.activeTournamentId = activeTournamentId
             state.loading = false
         },
-        changeActiveGame(state, action) {
-            state.activeGameId = action.payload
+        updateMatches(state, {payload}: PayloadAction<IMatch[]>){
+            payload.forEach(game => {
+                console.log(game)
+                if(!game._new){
+                    state.data[game.sport.id].regions[game.region.id].tournaments[game.tournament.id].matches[game._id].match_info = game.match_info
+                }
+            })
+        },
+        changeActiveGame(state, {payload}: PayloadAction<{id: string, regionId: string; tournamentId: string}>) {
+            state.activeGameId = payload.id;
+            state.activeRegionId = payload.regionId;
+            state.activeTournamentId = payload.tournamentId
+            // const activeGame = state.data[action.payload];
+            // state.activeRegionId =
         },
         changeActiveTournament(state, action: PayloadAction<{id: string, regionId: string}>){
             state.activeTournamentId =  action.payload.id
@@ -53,5 +66,5 @@ export const gamesSlice = createSlice({
     },
 })
 
-export const { getInitialGamesSuccess, changeActiveGame, changeActiveTournament } = gamesSlice.actions;
+export const { getInitialGamesSuccess, changeActiveGame, changeActiveTournament, updateMatches } = gamesSlice.actions;
 export default gamesSlice;

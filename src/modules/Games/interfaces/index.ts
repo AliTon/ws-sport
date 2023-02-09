@@ -1,7 +1,7 @@
 export interface ISport {
     id: string;
     name: string;
-    regions: Partial<Record<string, IRegion>>;
+    regions: Record<string, IRegion>;
     matchesCount: number;
 }
 
@@ -15,13 +15,14 @@ export interface IRegion {
 export interface ITournament {
     id: string;
     name: string;
-    matches: IMatch[];
+    matches: Record<string, IMatch>;
     matchesCount: number;
 }
 
 
 
 export interface IMatch {
+    _new?: boolean;
     _id: string;
     date: {
         start: number;

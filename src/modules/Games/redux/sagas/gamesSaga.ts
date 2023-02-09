@@ -2,7 +2,7 @@ import {call, put, take, takeEvery} from '@redux-saga/core/effects'
 import { initGameSocket} from '../actions/gamesActions'
 import SportSocket from "../../service/SportSocket";
 import {eventChannel} from "@redux-saga/core";
-import {getInitialGamesSuccess} from "../slices/gamesSlice";
+import {getInitialGamesSuccess, updateMatches} from "../slices/gamesSlice";
 import gameDataAdapter from "../adapters/gameDataAdapter";
 import {IMatch} from "../../interfaces";
 
@@ -12,9 +12,7 @@ function initSocket() {
         const ws = new SportSocket('FF32862C-84F7-1276-CC06-ashkdhsa')
 
         ws.onGettingMatches = (games: IMatch[]) => {
-            const firstMatch: IMatch = games[0]
-            console.log(games, "ee")
-            // dispatch an action with emitter here
+            const firstMatch: IMatch = games[0];
             return emitter(getInitialGamesSuccess({
                 games: gameDataAdapter(games) as unknown,
                 activeGameId: firstMatch.sport.id,
@@ -22,9 +20,13 @@ function initSocket() {
                 activeTournamentId: firstMatch.tournament.id
             }))
         }
+
+        ws.onUpdateMatches = (games: IMatch[]) => {
+            return emitter(updateMatches(games))
+        }
         // unsubscribe function
         return () => {
-            // do whatever to interrupt the socket communication here
+            // ws.close()
         }
     })
 }

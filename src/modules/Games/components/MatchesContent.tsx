@@ -3,6 +3,8 @@ import React from 'react'
 import styled from 'styled-components'
 import {useSelector} from "react-redux";
 import {getActiveMatchesSelector} from "../redux/selectors/gamesSelector";
+import {IMatch} from "../interfaces";
+import MatchItem from "./MatchItem";
 
 
 export const MatchesContentStyle = styled.div`
@@ -21,41 +23,25 @@ export const MatchesContentStyle = styled.div`
     border-bottom: 1px solid #292c3d;
     padding: 0 8px;
   }
-  .matche-item {
-    background: #434656;
-    border-radius: 0 8px 8px 0;
-    width: 50%;
-    height: 100px;
-    border-bottom: 1px solid #292c3d;
-    border-top: 1px solid #292c3d;
-    color: #c4c7d4;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-  }
 `
 
 const MatchesContent: React.FC = () => {
 
-    const {matches = []} = useSelector(getActiveMatchesSelector);
+    const {matches = {}} = useSelector(getActiveMatchesSelector);
+    console.log(matches);
+
+    const matchesArray: IMatch[] = Object.values(matches);
+
 
     return (
         <MatchesContentStyle>
             <div className='matches-title'>
-                <div>{matches[0]?.tournament?.name}</div>
-                <div>{matches.length}</div>
+                <div>{matchesArray[0]?.tournament?.name}</div>
+                <div>{matchesArray.length}</div>
             </div>
-            {matches.map((match: { match_info: { score: any; }, away: {name: string}, home: {name: string} }) =>
-                <div className='matche-item'>
-                   <div>
-                       {match.match_info.score}
-                   </div>
-                   <div>
-                       {`${match.home.name} vs ${match.away.name}`}
-                   </div>
-                </div>
-            )}
+            {matchesArray.map((match: IMatch) => (
+               <MatchItem {...match} key={match._id}/>
+            ))}
         </MatchesContentStyle>
     )
 }

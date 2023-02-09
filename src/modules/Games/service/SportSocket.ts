@@ -1,12 +1,14 @@
 import * as WebSocket from 'websocket'
 import { IMessageEvent } from 'websocket'
+import {IMatch} from "../interfaces";
 
 class SportSocket {
     private socket: WebSocket.w3cwebsocket | null = null
     rid: string
     url: string
     pingInterVal = 0
-    onGettingMatches: any
+    onGettingMatches?: (data: IMatch[]) => void
+    onUpdateMatches?: (data: IMatch[]) => void
     constructor(rid: string) {
         this.rid = rid
         // TEST
@@ -110,7 +112,8 @@ class SportSocket {
             return
         }
 
-        // console.log(JSON.stringify(data))
+        this.onUpdateMatches?.(data);
+
 
         // this.updateStateCb(data)
     }
