@@ -6,7 +6,7 @@ const Header = () => {
     return (
         <HeaderStyle>
             <Link to={'/'}>
-                <img src={Logo} alt="Logo" height="80px" />
+                <img src={Logo} alt="Logo" height="60px" />
             </Link>
             <div className="title">Technamin test-task</div>
         </HeaderStyle>

@@ -7,5 +7,4 @@ export const StyledMainLayout = styled.div`
     justify-content: space-between;
     margin: 124px auto;
     background: #292c3d;
-    //height: 100%;
 `

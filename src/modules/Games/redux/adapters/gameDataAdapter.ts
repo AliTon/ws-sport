@@ -1,6 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-//@ts-nocheck
-
 import { IMatch, ISport } from "../../interfaces";
 
 export default function gameDataAdapter(data: IMatch[]): Record<string, ISport> {

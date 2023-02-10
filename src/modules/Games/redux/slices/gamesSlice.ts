@@ -1,7 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import {IMatch, ISport} from "../../interfaces";
-import gameDataAdapter from "../adapters/gameDataAdapter";
-// import { getGamesAction } from '../actions/gamesActions'
 
 export interface GamesState {
     data: Record<string, ISport>;
@@ -55,15 +53,7 @@ export const gamesSlice = createSlice({
             state.activeTournamentId =  action.payload.id
             state.activeRegionId =  action.payload.regionId
         }
-    },
-    extraReducers: {
-        // [getGamesAction.type as string]: (state: GamesState) => {
-        //     state.loading = true
-        // },
-        // [getNewsFeedAction.type as string]: (state: GamesState) => {
-        //     state.loading = true
-        // },
-    },
+    }
 })
 
 export const { getInitialGamesSuccess, changeActiveGame, changeActiveTournament, updateMatches } = gamesSlice.actions;

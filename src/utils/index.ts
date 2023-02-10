@@ -29,8 +29,6 @@ export function IconClassNameGenerator(sportName: string): string {
             return 'fa-solid fa-boxing-glove';
         case 'Cricket':
             return "fa-brands fa-critical-role"
-            // return 'fa-regular fa-cricket-bat-ball';
-            // return 'fa-sharp fa-solid fa-floor-ball';
         case 'Horse racing':
             return 'fa-solid fa-horse';
         default:
