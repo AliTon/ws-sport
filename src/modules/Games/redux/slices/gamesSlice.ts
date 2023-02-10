@@ -27,7 +27,6 @@ export const gamesSlice = createSlice({
             activeRegionId: string,
             activeTournamentId: string
         }>) => {
-            console.log(games)
             state.data = games
             state.activeGameId = activeGameId
             state.activeRegionId = activeRegionId
@@ -36,7 +35,6 @@ export const gamesSlice = createSlice({
         },
         updateMatches(state, {payload}: PayloadAction<IMatch[]>){
             payload.forEach(game => {
-                console.log(game)
                 if(!game._new){
                     state.data[game.sport.id].regions[game.region.id].tournaments[game.tournament.id].matches[game._id].match_info = game.match_info
                 }
@@ -46,8 +44,6 @@ export const gamesSlice = createSlice({
             state.activeGameId = payload.id;
             state.activeRegionId = payload.regionId;
             state.activeTournamentId = payload.tournamentId
-            // const activeGame = state.data[action.payload];
-            // state.activeRegionId =
         },
         changeActiveTournament(state, action: PayloadAction<{id: string, regionId: string}>){
             state.activeTournamentId =  action.payload.id
