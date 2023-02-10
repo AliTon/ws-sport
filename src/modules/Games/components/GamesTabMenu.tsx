@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 
 import { GamesTabMenuStyle, TabItemStyle } from '../styles/index.styled'
@@ -6,7 +6,7 @@ import {getActiveGameSelector, getGamesSelector} from '../redux/selectors/gamesS
 
 import {changeActiveGame} from "../redux/slices/gamesSlice";
 import {IconClassNameGenerator} from "../../../utils";
-import {useNavigate} from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
 import {ISport} from "../interfaces";
 
 
@@ -17,6 +17,16 @@ const GamesTabMenu: React.FC = () => {
 
     const navigate = useNavigate();
 
+    const routeParams = useParams();
+
+
+    useEffect(()=> {
+        console.log(routeParams,' >>>>>>>>');
+        if(routeParams?.id){
+            dispatch(changeActiveGame(routeParams as {id: string, regionId: string; tournamentId: string}));
+        }
+    }, [])
+
     const handleSportChange = (game: ISport) => {
         const {id, regions } = game;
         const regionId = Object.keys(regions)[0];
@@ -25,13 +35,15 @@ const GamesTabMenu: React.FC = () => {
         navigate(`/${id}/${regionId}/${tournamentId}`)
     }
 
+    console.log(activeGame)
 
     return (
         <GamesTabMenuStyle>
-            {Object.values(games).map((game) =>  (
+            {Object.values(games).map((game, index) =>  (
                     <TabItemStyle
                         active={activeGame === game.id}
                         onClick={() => handleSportChange(game)}
+                        key={index}
                     >
                         <div className="tabDescription_count">{game.matchesCount}</div>
                         <div className="tabDescription_name_icon">

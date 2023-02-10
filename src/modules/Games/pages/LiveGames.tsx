@@ -13,15 +13,14 @@ const LiveGames = () => {
     return (
         <MainPageStyle>
             {
-                !loading ? <>
+                loading ?  <Loader/> :  <>
                         <GamesTabMenu/>
                         <div className="content">
                             <RegionDropdownMenu/>
                             <MatchesContent/>
                         </div>
                     </>
-                    :
-                    <Loader/>
+
             }
 
         </MainPageStyle>

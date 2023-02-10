@@ -32,7 +32,23 @@ export const MainPageStyle = styled.div`
         height: 100%;
     }
 `
-
+export const MatchesContentStyle = styled.div`
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 8px;
+  background-color: #363949;
+  .matches-title {
+    background-color: #363949;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    color: white;
+    height: 40px;
+    border-radius: 8px 8px 0 0;
+    border-bottom: 1px solid #292c3d;
+    padding: 0 8px;
+  }
+`
 export const MatchesItemStyle = styled.div<{highlight: boolean}>`
   background: #434656;
   border-radius: 0 8px 8px 0;

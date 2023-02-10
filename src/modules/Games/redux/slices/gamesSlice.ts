@@ -27,6 +27,7 @@ export const gamesSlice = createSlice({
             activeRegionId: string,
             activeTournamentId: string
         }>) => {
+            console.log(games, "gggggg")
             state.data = games
             state.activeGameId = activeGameId
             state.activeRegionId = activeRegionId
@@ -41,6 +42,7 @@ export const gamesSlice = createSlice({
             })
         },
         changeActiveGame(state, {payload}: PayloadAction<{id: string, regionId: string; tournamentId: string}>) {
+            console.log(payload)
             state.activeGameId = payload.id;
             state.activeRegionId = payload.regionId;
             state.activeTournamentId = payload.tournamentId

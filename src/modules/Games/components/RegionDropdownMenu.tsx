@@ -14,7 +14,7 @@ const RegionDropdownMenu: React.FC = () => {
     return (
         <RegionDropdownMenuStyle>
             <div className={'title'}>Countries</div>
-            {Object.values(regions).map((region) => <Region {...region}  />)}
+            {Object.values(regions).map((region) => <Region key={region.id} {...region}  />)}
         </RegionDropdownMenuStyle>
     )
 }

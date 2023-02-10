@@ -1,6 +1,7 @@
 import * as WebSocket from 'websocket'
 import { IMessageEvent } from 'websocket'
 import {IMatch} from "../interfaces";
+import {API_URL} from "../../../contants";
 
 class SportSocket {
     private socket: WebSocket.w3cwebsocket | null = null
@@ -12,9 +13,9 @@ class SportSocket {
     constructor(rid: string) {
         this.rid = rid
         // TEST
-        this.url = 'wss://mob.blue-version.com/hub/ws-sport'
+        // this.url = API_URL
         // REAL
-        // this.url = 'wss://sport.funexx.com/hub/ws-sport?s=ls'
+        this.url = 'wss://sport.funexx.com/hub/ws-sport?s=ls'
         this.init()
     }
 

@@ -21,12 +21,12 @@ const MatchItem: React.FC<IMatch> = ({match_info, home, away, status}) => {
                     <i>
                         score:
                     </i>
-                    <div>{match_info?.score || "123:323"}</div>
+                    <div>{match_info?.score || "---:---"}</div>
                 </div>
                 <div className='matchesItem_scores'>
                     <i>Scores: </i>
                     <div className='matchesItem_scores_item'>
-                        {match_info?.scores?.map(({score, period}) => <div>{period} - {score}</div>) || "---:---"}
+                        {match_info?.scores?.map(({score, period}) => <div key={period}>{period} - {score}</div>) || "---:---"}
                     </div>
                 </div>
             </div>
