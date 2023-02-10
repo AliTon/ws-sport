@@ -1,17 +1,17 @@
 import Header from '../Header'
-import {Outlet, useParams} from 'react-router-dom'
+import { Outlet, useParams } from 'react-router-dom'
 import { StyledMainLayout } from './MainLayout.styles'
-import {useDispatch} from "react-redux";
-import React from "react";
-import {initGameSocketAction} from "../../modules/Games/redux/actions/gamesActions";
+import { useDispatch } from 'react-redux'
+import React from 'react'
+import { initGameSocketAction } from '../../modules/Games/redux/actions/gamesActions'
 
 const MainLayout = () => {
-    const dispatch = useDispatch();
-    const params = useParams();
+    const dispatch = useDispatch()
+    const params = useParams()
 
     React.useEffect(() => {
         dispatch(initGameSocketAction(params))
-    }, [dispatch]);
+    }, [dispatch, params])
 
     return (
         <StyledMainLayout>

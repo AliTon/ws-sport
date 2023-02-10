@@ -1,7 +1,7 @@
 import * as WebSocket from 'websocket'
 import { IMessageEvent } from 'websocket'
-import {IMatch} from "../interfaces";
-import {API_URL} from "../../../contants";
+import { IMatch } from '../interfaces'
+import { API_URL } from '../../../configureApp/constants'
 
 class SportSocket {
     private socket: WebSocket.w3cwebsocket | null = null
@@ -13,9 +13,9 @@ class SportSocket {
     constructor(rid: string) {
         this.rid = rid
         // TEST
-        // this.url = API_URL
+        this.url = API_URL
         // REAL
-        this.url = 'wss://sport.funexx.com/hub/ws-sport?s=ls'
+        // this.url = 'wss://sport.funexx.com/hub/ws-sport?s=ls'
         this.init()
     }
 
@@ -103,7 +103,7 @@ class SportSocket {
         const { data } = JSON.parse(message.data as unknown as string)
 
         // We get message about pong or session(init)
-        if (data === 'pong' || data.session) return;
+        if (data === 'pong' || data.session) return
 
         // It's mean that we are getting initial state for matches
         if (data.sid) {
@@ -111,8 +111,7 @@ class SportSocket {
             return
         }
 
-        this.onUpdateMatches?.(data);
-
+        this.onUpdateMatches?.(data)
 
         // this.updateStateCb(data)
     }

@@ -1,28 +1,28 @@
 import React from 'react'
-import {MainPageStyle} from '../styles/index.styled'
-import GamesTabMenu from '../components/GamesTabMenu'
-import {useSelector} from "react-redux";
-import {getLoadingState} from "../redux/selectors/gamesSelector";
-import Loader from "../components/Loader";
-import RegionDropdownMenu from '../components/RegionDropdownMenu';
-import MatchesContent from '../components/MatchesContent';
+import { MainPageStyle } from '../styles/index.styled'
+import SportsTabMenu from '../components/SportsTabMenu'
+import { useSelector } from 'react-redux'
+import { getLoadingState } from '../redux/selectors/gamesSelector'
+import Loader from '../components/Loader'
+import RegionDropdownMenu from '../components/RegionDropdownMenu'
+import MatchesContent from '../components/MatchesContent'
 
 const LiveGames = () => {
-    const loading = useSelector(getLoadingState);
+    const loading = useSelector(getLoadingState)
 
     return (
         <MainPageStyle>
-            {
-                loading ?  <Loader/> :  <>
-                        <GamesTabMenu/>
-                        <div className="content">
-                            <RegionDropdownMenu/>
-                            <MatchesContent/>
-                        </div>
-                    </>
-
-            }
-
+            {loading ? (
+                <Loader />
+            ) : (
+                <>
+                    <SportsTabMenu />
+                    <div className="content">
+                        <RegionDropdownMenu />
+                        <MatchesContent />
+                    </div>
+                </>
+            )}
         </MainPageStyle>
     )
 }

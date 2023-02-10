@@ -1,10 +1,6 @@
-import { createAction } from '@reduxjs/toolkit';
+import { createAction } from '@reduxjs/toolkit'
+import {IRouterParams} from "../../interfaces";
 
-export interface IRouterParams {
-    gameId?: string,
-    regionId?: string;
-    tournamentId?: string
-}
 
 export const initGameSocketAction = createAction(
     'INIT_GAMES_SOCKET',

@@ -1,5 +1,5 @@
 import { configureStore } from '@reduxjs/toolkit'
-import { gameSlice  } from '../modules/Games'
+import { gameSlice } from '../modules/Games'
 import createSagaMiddleware from '@redux-saga/core'
 import rootSaga from './rootSaga'
 

@@ -2,8 +2,8 @@
 export { default as MainPage } from './pages/LiveGames'
 
 // STORE
-export {default as gamesSaga} from "./redux/sagas/gamesSaga"
-export {default as gameSlice} from "./redux/slices/gamesSlice"
+export { default as gamesSaga } from './redux/sagas/gamesSaga'
+export { default as gameSlice } from './redux/slices/gamesSlice'
 
 //Interfaces
 
